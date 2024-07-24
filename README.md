@@ -1,79 +1,100 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# AsyncStorage-Task-App
+- Bu projedede İş planlama uygulaması hazırlanmıştır.
+- Görev planlaması oluşturulmuş,
+- Görevlerin sürelerini planlama,
+- ve Görevlerin takibi , gibi işlemler yapılabilmektedir.
+- Proje içerisinde ;
+  - useCallback, useEffect, useState hook ları,
+  - StyleSheet, Dimensions, FlatList bileşenleri,
+  kullanılmıştır.
+- lottie kütüphanesi ile animasyon lar kullanılmıştır.
+    Animasyonlar json formatında animasion klasörüne kaydedilerek 
+      <LottieView
+            autoPlay
+            loop
+            style={{height: 150, width: '100%'}}
+            source={require('../assets/animations/pencil.json')}
+          />
+        kullanlıyor.
+  - toast message kütüphanesi ile işlemler yapıldıktan sonra kullaıcıya bilgi verilmiştir.
+# Kütüphaneler
+@react-native-async-storage/async-storage
+@react-navigation/native
+react-native-screens react-native-safe-area-context
+@react-navigation/native-stack
+react-native-gesture-handler
+react-native-modal-datetime-picker @react-native-community/datetimepicker
+react-native-vector-icons
+react-native-dropdown-picker
+react-native-uuid
+react-native-toast-message
+lottie-react-native
 
-# Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+vector icons icin kurulum içerisinde
 
-## Step 1: Start the Metro Server
+1 - ios klasöründe
+   Edit Info.plist and add a property called Fonts provided by application (or UIAppFonts if Xcode autocomplete is not working):
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+List of all available fonts to copy & paste in Info.plist
+<key>UIAppFonts</key>
+<array>
+  <string>AntDesign.ttf</string>
+  <string>Entypo.ttf</string>
+  <string>EvilIcons.ttf</string>
+  <string>Feather.ttf</string>
+  <string>FontAwesome.ttf</string>
+  <string>FontAwesome5_Brands.ttf</string>
+  <string>FontAwesome5_Regular.ttf</string>
+  <string>FontAwesome5_Solid.ttf</string>
+  <string>FontAwesome6_Brands.ttf</string>
+  <string>FontAwesome6_Regular.ttf</string>
+  <string>FontAwesome6_Solid.ttf</string>
+  <string>Foundation.ttf</string>
+  <string>Ionicons.ttf</string>
+  <string>MaterialIcons.ttf</string>
+  <string>MaterialCommunityIcons.ttf</string>
+  <string>SimpleLineIcons.ttf</string>
+  <string>Octicons.ttf</string>
+  <string>Zocial.ttf</string>
+  <string>Fontisto.ttf</string>
+</array> ekleyin
 
-To start Metro, run the following command from the _root_ of your React Native project:
+2 - android klasöründe 
+Edit android/app/build.gradle (NOT android/build.gradle) and add:
 
-```bash
-# using npm
-npm start
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+ekleyin.
+3 - Edit the android/settings.gradle file as shown below:
 
-# OR using Yarn
-yarn start
-```
+rootProject.name = 'MyApp'
 
-## Step 2: Start your Application
+include ':app'
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+include ':react-native-vector-icons'
+project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+ekleyin
+4- Edit the android/app/build.gradle (located in the app folder) as shown below:
+implementation project(':react-native-vector-icons')
 
-### For Android
 
-```bash
-# using npm
-npm run android
+### useFocusEffect:
 
-# OR using Yarn
-yarn android
-```
+- Bu hook, React Navigation kütüphanesinden gelir ve bir ekrana odaklandığında belirli bir fonksiyonun ya da işlevin çalışmasını sağlar.
 
-### For iOS
+### useCallback:
 
-```bash
-# using npm
-npm run ios
+- `useCallback(() => {
+  loadTasks();
+}, []),`
 
-# OR using Yarn
-yarn ios
-```
+- Bu hook, fonksiyonun referansını hatırlatmaya yardımcı olur.`loadTasks` fonksiyonu bir kez oluşturulacak ve aynı referans her seferinde kullanılacaktır.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### useRoute:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- React Navigation kütüphanesinde kullanılan bir Hooktur ve mevcut ekrarnın navigasyon durumuna ve parametlerine erişim sağlar.Bu hook, özellikler ekranlar arasında veri taşımak ve mevcut ekranın bilgilerine erişmek için kullanılır.
 
-## Step 3: Modifying your App
+### useLayoutEffect:
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- Ekranda olacak güncellemeleri kullanıcıya göstermeden yapılmasını garanti etmek için kullanılır.
+# AddTaskApp_Mob
