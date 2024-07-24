@@ -98,3 +98,8 @@ implementation project(':react-native-vector-icons')
 
 - Ekranda olacak güncellemeleri kullanıcıya göstermeden yapılmasını garanti etmek için kullanılır.
 # AddTaskApp_Mob
+
+
+# gif
+![addtask](https://github.com/user-attachments/assets/b91c2752-cc9f-4a06-a53b-ccf0b52bf371)
+
